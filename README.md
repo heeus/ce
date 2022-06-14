@@ -1,3 +1,3 @@
-[![codecov](https://codecov.io/gh/heeus/ce/branch/main/graph/badge.svg?token=<codedevtoken>)](https://codecov.io/gh/heeus/ce)
+[![codecov](https://codecov.io/gh/heeus/ce/branch/main/graph/badge.svg?token=FylcqUdTaR)](https://codecov.io/gh/heeus/ce)
 
 # ce
