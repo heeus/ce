@@ -10,10 +10,9 @@ import (
 	"flag"
 	"fmt"
 	"os"
-)
 
-//go:embed version
-var version string
+	"github.com/heeus/ce"
+)
 
 func init() {
 
@@ -32,23 +31,25 @@ func init() {
 	}
 }
 
-type Config struct {
-	AdminPort int
-}
-
 func main() {
 
-	var cfg Config
+	var cfg ce.Config
 
 	flag.IntVar(&cfg.AdminPort, "aport", 8080, "admin port, will be used for 127.0.0.1 only")
 	flag.Parse()
 
 	if flag.Arg(0) == "version" {
-		fmt.Println(version)
+		fmt.Println(ce.Version)
 		return
 	}
 	if flag.Arg(0) == "server" {
-		fmt.Printf("Starting server with: %+v...\n", cfg)
+		ce, cleanup, err := ce.Provide(cfg)
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		defer cleanup()
+		_ = ce.Run()
 		return
 	}
 	flag.Usage()

@@ -4,10 +4,6 @@
 
 package ce
 
-import (
-//	"context"
-)
-
-// Provide s.e.
-//func Provide() (myinterface , cleanup func(), err error) {
-//}
+func Provide(cfg Config) (impl IServer, cleanup func(), err error) {
+	return &ce{cfg: cfg}, func() {}, nil
+}

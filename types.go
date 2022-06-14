@@ -4,3 +4,10 @@
 
 package ce
 
+type IServer interface {
+	Run() error
+}
+
+type Config struct {
+	AdminPort int
+}
