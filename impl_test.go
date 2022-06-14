@@ -1,8 +1,8 @@
 /*
- * Copyright (c) <year>-present <company>, Ltd.
+ * Copyright (c) 2022-present unTill Pro, Ltd.
  */
 
-package itemplate
+package ce
 
 import (
 	"testing"

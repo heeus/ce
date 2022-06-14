@@ -1,3 +1,3 @@
-[![codecov](https://codecov.io/gh/heeus/<repo>/branch/main/graph/badge.svg?token=<codedevtoken>)](https://codecov.io/gh/heeus/<repo>)
+[![codecov](https://codecov.io/gh/heeus/ce/branch/main/graph/badge.svg?token=<codedevtoken>)](https://codecov.io/gh/heeus/ce)
 
-# template
+# ce
