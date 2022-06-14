@@ -6,6 +6,7 @@ package ce
 
 import (
 	"context"
+	"fmt"
 	"os"
 	"os/signal"
 	"sync"
@@ -22,6 +23,8 @@ type ce struct {
 var signals chan os.Signal
 
 func (ce *ce) Run() error {
+
+	logger.Info(fmt.Sprintf("config: %+v", ce.cfg))
 
 	ctx, cancel := context.WithCancel(context.Background())
 

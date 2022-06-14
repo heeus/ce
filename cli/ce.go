@@ -10,6 +10,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"path/filepath"
 
 	"github.com/heeus/ce"
 )
@@ -18,15 +19,18 @@ func init() {
 
 	flag.Usage = func() {
 		w := flag.CommandLine.Output() // may be os.Stderr - but not necessarily
-
-		fmt.Println()
-
-		fmt.Fprintf(w, "Usage: %s <command> [<options>]\n", os.Args[0])
+		fmt.Fprintf(w, "Usage:\n")
+		fmt.Fprintf(w, "\n")
+		fmt.Fprintf(w, "\t%s [options] <command>\n", filepath.Base(os.Args[0]))
+		fmt.Fprintf(w, "\n")
 		fmt.Fprintf(w, "Commands:\n")
-		fmt.Fprintf(w, "  help\t\tPrint help\n")
-		fmt.Fprintf(w, "  server\tStart server\n")
-		fmt.Fprintf(w, "  version\tPrint version\n")
+		fmt.Fprintf(w, "\n")
+		fmt.Fprintf(w, "\thelp\t\tprint help\n")
+		fmt.Fprintf(w, "\tserver\t\tstart server\n")
+		fmt.Fprintf(w, "\tversion\t\tprint version\n")
+		fmt.Fprintf(w, "\n")
 		fmt.Fprintf(w, "Options:\n")
+		fmt.Fprintf(w, "\n")
 		flag.PrintDefaults()
 	}
 }
