@@ -26,7 +26,7 @@ func init() {
 		fmt.Fprintf(w, "Commands:\n")
 		fmt.Fprintf(w, "\n")
 		fmt.Fprintf(w, "\thelp\t\tprint help\n")
-		fmt.Fprintf(w, "\tserver\t\tstart server\n")
+		fmt.Fprintf(w, "\tserver\t\tstart Server\n")
 		fmt.Fprintf(w, "\tversion\t\tprint version\n")
 		fmt.Fprintf(w, "\n")
 		fmt.Fprintf(w, "Options:\n")
