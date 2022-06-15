@@ -32,11 +32,7 @@ func (ce *ce) Run() error {
 	signals = make(chan os.Signal, 1)
 	signal.Notify(signals, os.Interrupt)
 
-	ctx, err := ce.start(ctx)
-	if nil != err {
-		cancel()
-		return err
-	}
+	ctx = ce.start(ctx)
 
 	sig := <-signals
 	logger.Info("signal received:", sig)
@@ -44,10 +40,10 @@ func (ce *ce) Run() error {
 	return ce.join(ctx)
 }
 
-func (ce *ce) start(ctx context.Context) (newCtx context.Context, _ error) {
+func (ce *ce) start(ctx context.Context) (newCtx context.Context) {
 	ce.wg.Add(1)
 	go ce.run(ctx)
-	return ctx, nil
+	return ctx
 }
 
 func (ce *ce) run(ctx context.Context) {
