@@ -29,7 +29,7 @@ func (ce *ce) Run() error {
 	ctx, cancel := context.WithCancel(context.Background())
 
 	signals = make(chan os.Signal, 1)
-	signal.Notify(signals, os.Interrupt)
+	signal.Notify(signals, os.Interrupt, os.Kill)
 
 	ctx, err := ce.start(ctx)
 	if nil != err {
