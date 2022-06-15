@@ -20,17 +20,17 @@ func init() {
 	flag.Usage = func() {
 		w := flag.CommandLine.Output() // may be os.Stderr - but not necessarily
 		fmt.Fprintf(w, "Usage:\n")
-		fmt.Fprintf(w, "\n")
+		fmt.Fprintln(w)
 		fmt.Fprintf(w, "\t%s [options] <command>\n", filepath.Base(os.Args[0]))
-		fmt.Fprintf(w, "\n")
+		fmt.Fprintln(w)
 		fmt.Fprintf(w, "Commands:\n")
-		fmt.Fprintf(w, "\n")
+		fmt.Fprintln(w)
 		fmt.Fprintf(w, "\thelp\t\tprint help\n")
 		fmt.Fprintf(w, "\tserver\t\tstart Server\n")
 		fmt.Fprintf(w, "\tversion\t\tprint version\n")
-		fmt.Fprintf(w, "\n")
+		fmt.Fprintln(w)
 		fmt.Fprintf(w, "Options:\n")
-		fmt.Fprintf(w, "\n")
+		fmt.Fprintln(w)
 		flag.PrintDefaults()
 	}
 }
@@ -39,7 +39,7 @@ func main() {
 
 	var cfg ce.Config
 
-	flag.IntVar(&cfg.AdminPort, "aport", 8080, "admin port, will be used for 127.0.0.1 only")
+	flag.IntVar(&cfg.AdminPort, "aport", ce.DefaultAdminPort, "admin port, will be used for 127.0.0.1 only")
 	flag.Parse()
 
 	if flag.Arg(0) == "version" {

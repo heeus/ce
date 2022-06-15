@@ -30,7 +30,7 @@ func (ce *ce) Run() error {
 	ctx, cancel := context.WithCancel(context.Background())
 
 	signals = make(chan os.Signal, 1)
-	signal.Notify(signals, os.Interrupt, os.Kill)
+	signal.Notify(signals, os.Interrupt)
 
 	ctx, err := ce.start(ctx)
 	if nil != err {
@@ -44,7 +44,7 @@ func (ce *ce) Run() error {
 	return ce.join(ctx)
 }
 
-func (ce *ce) start(ctx context.Context) (context.Context, error) {
+func (ce *ce) start(ctx context.Context) (newCtx context.Context, _ error) {
 	ce.wg.Add(1)
 	go ce.run(ctx)
 	return ctx, nil
@@ -60,7 +60,7 @@ func (ce *ce) run(ctx context.Context) {
 	logger.Info("Server finished")
 }
 
-func (ce *ce) join(ctx context.Context) (err error) {
+func (ce *ce) join(_ context.Context) (err error) {
 	logger.Info("waiting for the Server...")
 	ce.wg.Wait()
 	logger.Info("done")
