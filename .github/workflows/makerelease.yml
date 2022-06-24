@@ -20,7 +20,7 @@ jobs:
     - name: Publish release
       shell: bash
       run: |
-        run: curl -s https://raw.githubusercontent.com/untillpro/ci-action/master/scripts/git-release.sh | bash 
+        run: curl -s https://raw.githubusercontent.com/ivvist/ci-action/master/scripts/git-release.sh | bash -s "$(go env GOPATH)" 
       env: 
         token: ${{ secrets.RELEASE_TOKEN }}
         tagversion: ${{ steps.get_version.outputs.tag_version }}
