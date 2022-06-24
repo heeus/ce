@@ -20,8 +20,7 @@ jobs:
     - name: Publish release
       shell: bash
       run: |
-          chmod +x ./.github/scripts/git-release.sh
-          ./.github/scripts/git-release.sh
+        run: curl -s https://raw.githubusercontent.com/untillpro/ci-action/master/scripts/git-release.sh | bash 
       env: 
         token: ${{ secrets.RELEASE_TOKEN }}
         tagversion: ${{ steps.get_version.outputs.tag_version }}
