@@ -18,9 +18,8 @@ jobs:
         echo ::set-output name=tag_version::${GITHUB_REF/refs\/tags\//}
 
     - name: Publish release
-      run: |
-	run: curl -s https://raw.githubusercontent.com/ivvist/ci-action/master/scripts/check_copyright.sh | bash -s "$(go env GOPATH)" 
-#        run: curl -s https://raw.githubusercontent.com/ivvist/ci-action/master/scripts/git-release.sh | bash -s "$(go env GOPATH)" 
+#      run: curl -s https://raw.githubusercontent.com/ivvist/ci-action/master/scripts/check_copyright.sh | bash -s "$(go env GOPATH)" 
+        run: curl -s https://raw.githubusercontent.com/ivvist/ci-action/master/scripts/git-release.sh | bash -s "$(go env GOPATH)" 
       env: 
         token: ${{ secrets.RELEASE_TOKEN }}
         tagversion: ${{ steps.get_version.outputs.tag_version }}
