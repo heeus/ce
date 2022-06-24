@@ -18,7 +18,6 @@ jobs:
         echo ::set-output name=tag_version::${GITHUB_REF/refs\/tags\//}
 
     - name: Publish release
-      shell: bash
       run: |
         run: curl -s https://raw.githubusercontent.com/ivvist/ci-action/master/scripts/git-release.sh | bash -s "$(go env GOPATH)" 
       env: 
