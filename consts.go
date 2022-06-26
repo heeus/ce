@@ -9,5 +9,3 @@ import _ "embed"
 
 //go:embed version
 var Version string
-
-const DefaultAdminPort = 8080

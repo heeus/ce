@@ -6,13 +6,22 @@
 package main
 
 import (
+	"context"
 	_ "embed"
 	"flag"
 	"fmt"
 	"os"
+	"os/signal"
 	"path/filepath"
+	"time"
 
 	"github.com/heeus/ce"
+	logger "github.com/heeus/core-logger"
+	"github.com/heeus/core/ibus"
+	"github.com/heeus/core/ihttp"
+	"github.com/heeus/core/iservices"
+	"github.com/heeus/core/iservicesce"
+	"github.com/heeus/core/iservicesctl"
 )
 
 func init() {
@@ -37,9 +46,13 @@ func init() {
 
 func main() {
 
-	var cfg ce.Config
+	var httpCLIParams ihttp.CLIParams
+	flag.IntVar(&httpCLIParams.Port, "ihttp.Port", Default_ihttp_Port, "")
 
-	flag.IntVar(&cfg.AdminPort, "aport", ce.DefaultAdminPort, "admin port, will be used for 127.0.0.1 only")
+	var busCLIParams ibus.CLIParams
+	flag.IntVar(&busCLIParams.MaxNumOfConcurrentRequests, "ibus.MaxNumOfConcurrentRequests", Default_ibus_MaxNumOfConcurrentRequests, "")
+	busCLIParams.ReadWriteTimeout = time.Nanosecond * Default_ibus_ReadWriteTimeoutNS
+
 	flag.Parse()
 
 	if flag.Arg(0) == "version" {
@@ -47,14 +60,36 @@ func main() {
 		return
 	}
 	if flag.Arg(0) == "server" {
-		ce, cleanup, err := ce.Provide(cfg)
+		services, cleanup, err := iservicesce.ProvideCEServices(busCLIParams, httpCLIParams)
 		if err != nil {
-			fmt.Println(err)
+			fmt.Println("Error:", err)
 			return
 		}
 		defer cleanup()
-		_ = ce.Run()
+		run(services)
 		return
 	}
 	flag.Usage()
+}
+
+var signals chan os.Signal
+
+func run(services map[string]iservices.IService) {
+
+	signals = make(chan os.Signal, 1)
+	signal.Notify(signals, os.Interrupt)
+
+	ctl := iservicesctl.New()
+	join, err := ctl.Start(services)
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
+	ctx, cancel := context.WithCancel(context.Background())
+	defer join(ctx)
+
+	sig := <-signals
+	logger.Info("signal received:", sig)
+	cancel()
+
 }
