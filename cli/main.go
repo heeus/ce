@@ -62,7 +62,7 @@ func main() {
 	if flag.Arg(0) == "server" {
 		services, cleanup, err := iservicesce.ProvideCEServices(busCLIParams, httpCLIParams)
 		if err != nil {
-			fmt.Println("Error:", err)
+			fmt.Println("services not provided:", err)
 			return
 		}
 		defer cleanup()
@@ -84,7 +84,7 @@ func run(services map[string]iservices.IService) {
 	join, err := ctl.PrepareAndRun(ctx, services)
 	if err != nil {
 		cancel()
-		fmt.Println("Error:", err)
+		fmt.Println("services preparation error:", err)
 		return
 	}
 	defer join(ctx)
