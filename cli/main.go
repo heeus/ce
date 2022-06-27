@@ -79,13 +79,14 @@ func run(services map[string]iservices.IService) {
 	signals = make(chan os.Signal, 1)
 	signal.Notify(signals, os.Interrupt)
 
+	ctx, cancel := context.WithCancel(context.Background())
 	ctl := iservicesctl.New()
-	join, err := ctl.Start(services)
+	join, err := ctl.PrepareAndRun(ctx, services)
 	if err != nil {
+		cancel()
 		fmt.Println("Error:", err)
 		return
 	}
-	ctx, cancel := context.WithCancel(context.Background())
 	defer join(ctx)
 
 	sig := <-signals

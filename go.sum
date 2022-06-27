@@ -14,6 +14,8 @@ github.com/heeus/core v0.0.0-20220626202946-61d268c1123d h1:FyLFDrfsaN+iPiLqNe2g
 github.com/heeus/core v0.0.0-20220626202946-61d268c1123d/go.mod h1:8mdnEEHDhBa+b2qtgw5DZPH7foN5XEBEdJQ62JRmXIU=
 github.com/heeus/core v0.0.0-20220626204336-10e9a9da042f h1:9wheNP/RtkS6UmH3AawzL7jjDCWyJYhIIpsUG3fCEbI=
 github.com/heeus/core v0.0.0-20220626204336-10e9a9da042f/go.mod h1:8mdnEEHDhBa+b2qtgw5DZPH7foN5XEBEdJQ62JRmXIU=
+github.com/heeus/core v0.0.0-20220627182058-19070616b26d h1:UmY3iV9K8gjoo78Jfef2K6Ic2OEL1kA4Pr51vAz/3Mo=
+github.com/heeus/core v0.0.0-20220627182058-19070616b26d/go.mod h1:8mdnEEHDhBa+b2qtgw5DZPH7foN5XEBEdJQ62JRmXIU=
 github.com/heeus/core-istructs v0.0.0-20220519084755-211a93a8d39d/go.mod h1:Q5o12JiH0nF2lA34zieJXBzzNxCuYM+2XOKnQlFA33I=
 github.com/heeus/core-logger v0.0.0-20220618220510-1987f18c0b82 h1:iqLRQQv1iI/QU14lKoaDOsJcUs9+P0GPgUPwrNeOr64=
 github.com/heeus/core-logger v0.0.0-20220618220510-1987f18c0b82/go.mod h1:yTNAkvEhCxUhuMB0g8OJKjve8tHAUIQ9MmRDn0z20b0=
