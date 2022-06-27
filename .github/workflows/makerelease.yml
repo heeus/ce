@@ -1,0 +1,26 @@
+name: Build & Publish
+on:
+  push:
+    tags:        
+      - '*'
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Get the version
+      id: get_version
+      run: |
+        echo ::set-output name=tag_version::${GITHUB_REF/refs\/tags\//}
+
+    - name: Publish release
+      run: curl -s https://raw.githubusercontent.com/untillpro/ci-action/master/scripts/git-release.sh | bash
+      env: 
+        token: ${{ secrets.RELEASE_TOKEN }}
+        tagversion: ${{ steps.get_version.outputs.tag_version }}
+
+
