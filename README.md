@@ -2,4 +2,4 @@
 
 # CLI
 
-- Parse args and prepare Params: cli/main
+Ref. https://github.com/heeus/core/blob/main/cmd/ce/README.md
