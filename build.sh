@@ -24,14 +24,13 @@ function build_os_arch {
 
   [ $1 == "windows" ] && exeName="ce.exe" || exeName="ce"
 
-  pushd . > /dev/null
-  cd cli
-  env GOOS=$1 GOARCH=$2 go build -o ../$BuildFolder/$exeName
-  popd > /dev/null
+  echo "building GOOS=$1 GOARCH=$2..."
+  env GOOS=$1 GOARCH=$2 go build -o $BuildFolder/$exeName
 
   pushd $BuildFolder > /dev/null
   tar -czvf ce_v${SemVer}_$1_$2.tar.gz $exeName > /dev/null
   popd > /dev/null
+
   rm $BuildFolder/$exeName
 }
 
@@ -51,3 +50,4 @@ build_os_arch freebsd amd64
 build_os_arch windows amd64
 
 cp install/install.sh $BuildFolder
+cp version $BuildFolder
