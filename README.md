@@ -2,4 +2,4 @@
 
 # CLI
 
-Ref. https://github.com/heeus/core/blob/main/cmd/ce/README.md
+Ref. https://github.com/heeus/core/blob/main/cmd/ce/main/README.md
