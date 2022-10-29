@@ -1,6 +1,6 @@
 module github.com/heeus/ce
 
-go 1.18
+go 1.17
 
 require github.com/heeus/core v0.0.0-20220718142432-862414c8112f
 
